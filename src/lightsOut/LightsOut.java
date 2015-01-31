@@ -17,7 +17,7 @@ public class LightsOut extends JFrame{
 		int width=500;
 		int height=500;
 		frame.setSize(width, height);
-		
+		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
 	
