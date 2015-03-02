@@ -16,7 +16,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 public class base extends Applet implements Runnable,KeyListener,MouseListener,MouseMotionListener{
-				
+
 	Thread gameThread;		// ゲームスレッド
 	boolean keyLeft;
 	boolean keyRight;
@@ -34,7 +34,7 @@ public class base extends Applet implements Runnable,KeyListener,MouseListener,M
 	int centerPointY=300;
 	int height=608;
 	int width=608;
-	public void init(){ 
+	public void init(){
 		addMouseListener(this);
 		addMouseMotionListener(this);
 		addKeyListener(this);
@@ -42,9 +42,9 @@ public class base extends Applet implements Runnable,KeyListener,MouseListener,M
 		offImage=createImage(width,height);
 		setBackground(Color.BLACK);
 		setForeground(Color.white);
-		try(FileInputStream in1=new FileInputStream("towerDefense\\images\\star.png");//FileInputStreamを作る
-				FileInputStream in2=new FileInputStream("towerDefense\\images\\zeni.png");
-				FileInputStream in3=new FileInputStream("towerDefense\\images\\field.png")
+		try(FileInputStream in1=new FileInputStream("..\\img(TowerDefence)\\star.png");//FileInputStreamを作る
+				FileInputStream in2=new FileInputStream("..\\img(TowerDefence)\\zeni.png");
+				FileInputStream in3=new FileInputStream("..\\img(TowerDefence)\\field.png")
 				){//FileInputStreamを作る
 			star=ImageIO.read(in1);//イメージを取り込む
 			zeni=ImageIO.read(in2);
@@ -68,7 +68,7 @@ public class base extends Applet implements Runnable,KeyListener,MouseListener,M
 	public void stop() {
 		gameThread = null;
 	}
-	
+
 	@Override
 	// ゲームスレッドのメイン
 	public void run() {
@@ -116,7 +116,7 @@ public class base extends Applet implements Runnable,KeyListener,MouseListener,M
 	public void paint(Graphics g) {
 		g.drawImage(offImage,0,0,this );
 	}
-	
+
 	public void update(Graphics g){
 		paint(g);
 	}
@@ -125,7 +125,7 @@ public class base extends Applet implements Runnable,KeyListener,MouseListener,M
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {
-		
+
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
@@ -138,7 +138,7 @@ public class base extends Applet implements Runnable,KeyListener,MouseListener,M
 	}
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		
+
 	}
 	@Override
 	public void mouseMoved(MouseEvent e) {

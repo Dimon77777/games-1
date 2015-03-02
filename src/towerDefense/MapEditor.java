@@ -15,20 +15,20 @@ import javax.imageio.ImageIO;
 public class MapEditor extends base{
 	Image selectedFrame;
 	Image selected;
-	BufferedImage back;
-	Graphics gv;
-	Graphics map;
+	BufferedImage map;//マップ情報
+	Graphics gv;//画面にmapとマップチップを描写
+	Graphics mapEditor;//mapを書き換えるためのもの(画面描写はしない)
 	int fx=0;
 	int fy=0;
 	public void init(){
 		super.init();
 		try{
-			selectedFrame=ImageIO.read(new FileInputStream("towerDefense\\images\\selected.png"));
+			selectedFrame=ImageIO.read(new FileInputStream("..\\img(TowerDefence)\\selected.png"));
 		}catch(IOException e){
 			e.printStackTrace();
 		}
-		back=new BufferedImage(width,height,BufferedImage.TYPE_INT_BGR);
-		map=back.getGraphics();
+		map=new BufferedImage(width,height,BufferedImage.TYPE_INT_BGR);
+		mapEditor=map.getGraphics();
 		setSize(new Dimension(width+32*8,height));
 		offImage=createImage(width+32*8,height);
 		gv=offImage.getGraphics();
@@ -44,17 +44,20 @@ public class MapEditor extends base{
 			}
 			if(keyEnter){
 				try{
-					ImageIO.write(back, "png", new File("towerDefense\\images\\test.png"));
+					ImageIO.write(map, "png", new File("img(TowerDefence)\\map.png"));
 					System.exit(0);
 				}catch(IOException e){
 					e.printStackTrace();
 				}
 			}
 			gv.clearRect(0, 0, getWidth(), getHeight());
+			//マップチップを描写
 			gv.drawImage(field, width+1,0 ,this);
-			gv.drawImage(field, width+2+5, height-42+5,width+2+5+32, height-42+5+32,fx*32,fy*32,fx*32+32,fy*32+32, this);
-			gv.drawImage(selectedFrame, width+2, height-42, this);
-			gv.drawImage(back, 0, 0, this);
+			//被選択マップチップを描写
+			gv.drawImage(field, width, height-32,width+32, height,fx*32,fy*32,fx*32+32,fy*32+32, this);
+			gv.drawImage(selectedFrame, width, height-32, this);
+			gv.drawImage(map, 0, 0, this);
+			gv.drawString(((int)point.getX()/32+","+(int)point.getY()/32), (int)point.getX(), (int)point.getY());
 			//draw_squareBlock(gv);
 			repaint();
 		}
@@ -85,7 +88,7 @@ public class MapEditor extends base{
 			fx=(point.x-width+2)/32;
 			fy=(point.y)/32;
 		}else{
-			map.drawImage(field, mx*32, my*32,mx*32+32, my*32+32,fx*32,fy*32,fx*32+32,fy*32+32, this);
+			mapEditor.drawImage(field, mx*32, my*32,mx*32+32, my*32+32,fx*32,fy*32,fx*32+32,fy*32+32, this);
 		}
 	}	
 	@Override
@@ -93,11 +96,13 @@ public class MapEditor extends base{
 		point=e.getPoint();
 		int mx=point.x/32;
 		int my=point.y/32;
+		//マップチップを選択していたら真
 		if(0<=(point.x-width+2) && point.x<width+32*8 && (point.y)/32<16){
 			fx=(point.x-width+2)/32;
 			fy=(point.y)/32;
-		}else{
-			map.drawImage(field, mx*32, my*32,mx*32+32, my*32+32,fx*32,fy*32,fx*32+32,fy*32+32, this);
+		}else{//左画面クリック場所に選択されているマップチップを配置
+			mapEditor.drawImage(field, mx*32, my*32,mx*32+32, my*32+32,fx*32,fy*32,fx*32+32,fy*32+32, this);
 		}
 	}
+	
 }

@@ -86,18 +86,19 @@ public class TowerDefense extends Applet implements Runnable,KeyListener,MouseLi
 		setSize(new Dimension(width,height));
 		offImage=createImage(getWidth(),getHeight());
 		setBackground(Color.BLACK);
-	    try(FileInputStream in1=new FileInputStream("images\\star.png");//FileInputStreamを作る
-	    		FileInputStream in2=new FileInputStream("images\\zeni.png");
-	    		FileInputStream in3=new FileInputStream("images\\map_1.png");
-	    		FileInputStream in4=new FileInputStream("images\\enemy.png");
-	    		FileInputStream in5=new FileInputStream("images\\enemy2.png");
-	    		FileInputStream in6=new FileInputStream("images\\enemy3.png");
-	    		FileInputStream in7=new FileInputStream("images\\archer.png");
-	    		FileInputStream in8=new FileInputStream("images\\tama.png");
-	    		FileInputStream in9=new FileInputStream("images\\underbar.png");
-	    		FileInputStream in10=new FileInputStream("images\\selected_archer.png");
-	    		FileInputStream in11=new FileInputStream("images\\frame.png");
-	    		FileInputStream in12=new FileInputStream("images\\barricade.png")
+		String imgAdd="..\\img(TowerDefence)\\";
+	    try(FileInputStream in1=new FileInputStream(imgAdd+"star.png");//FileInputStreamを作る
+	    		FileInputStream in2=new FileInputStream(imgAdd+"zeni.png");
+	    		FileInputStream in3=new FileInputStream(imgAdd+"map_1.png");
+	    		FileInputStream in4=new FileInputStream(imgAdd+"enemy.png");
+	    		FileInputStream in5=new FileInputStream(imgAdd+"enemy2.png");
+	    		FileInputStream in6=new FileInputStream(imgAdd+"enemy3.png");
+	    		FileInputStream in7=new FileInputStream(imgAdd+"archer.png");
+	    		FileInputStream in8=new FileInputStream(imgAdd+"tama.png");
+	    		FileInputStream in9=new FileInputStream(imgAdd+"underbar.png");
+	    		FileInputStream in10=new FileInputStream(imgAdd+"selected_archer.png");
+	    		FileInputStream in11=new FileInputStream(imgAdd+"selected.png");
+	    		FileInputStream in12=new FileInputStream(imgAdd+"barricade.png")
 
 	    		){
 	    	star=ImageIO.read(in1);//イメージを取り込む
@@ -322,7 +323,7 @@ public class TowerDefense extends Applet implements Runnable,KeyListener,MouseLi
 		}
 		gv.drawImage(image, x, y, this);
 		gv.drawImage(underbar,0,size*17,this);
-		gv.drawImage(Image_archer, size*1, size*16, this);
+		gv.drawImage(Image_archer, size*1, size*17+size/2, this);
 		gv.drawImage(Image_barricade, size*2, size*17+size/2, this);
 
 		try {	//塔をマウスオーバー時にフレームを描写
