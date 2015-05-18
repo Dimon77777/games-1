@@ -10,6 +10,7 @@ public class Enemy {
 	boolean flag=false;
 	MarchRoute[] route;
 	int damage=0;
+	int HP=20;
 
 	//コンストラクタ
 	Enemy(MarchRoute[] route){
@@ -90,7 +91,7 @@ public class Enemy {
 		}
 	}
 	public boolean JudgeDied(){
-		if(damage>30){
+		if(damage>HP){
 			flag=false;
 			point=0;
 			damage=0;
@@ -99,5 +100,8 @@ public class Enemy {
 			return true;
 		}
 		return false;
+	}
+	public void giveDamage(int damage){
+		this.damage+=damage;
 	}
 }
