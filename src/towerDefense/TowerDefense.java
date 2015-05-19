@@ -80,8 +80,8 @@ public class TowerDefense extends Applet implements Runnable,KeyListener,MouseLi
     ArrayList<Integer> enemyNo=new ArrayList<Integer>();
     String TowerType="";
     boolean BlinkTitle=false;
-	int AsizeX=44;
-	int AsizeY=75;
+	int AsizeX=32;
+	int AsizeY=32;
 
 	public void init(){
 		addMouseListener(this);
