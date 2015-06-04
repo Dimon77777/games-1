@@ -7,6 +7,7 @@ public class Block {
 	int y=0;
 	boolean isBreakable=false;
 	Image image=null;
+	boolean isExist=false;
 
 	//コンストラクタ
 	//(x座標,y座標,破壊可能ブロックか)
@@ -15,6 +16,7 @@ public class Block {
 		this.y=y;
 		this.isBreakable=isBreakable;
 		this.image=image;
+		this.isExist=true;
 	}
 
 	/**
@@ -63,6 +65,22 @@ public class Block {
 	 */
 	public void setBreakable(boolean isBreakable) {
 	    this.isBreakable = isBreakable;
+	}
+
+	/**
+	 * isExistを取得します。
+	 * @return isExist
+	 */
+	public boolean isExist() {
+	    return isExist;
+	}
+
+	/**
+	 * isExistを設定します。
+	 * @param isExist isExist
+	 */
+	public void setExist(boolean isExist) {
+	    this.isExist = isExist;
 	}
 
 }
